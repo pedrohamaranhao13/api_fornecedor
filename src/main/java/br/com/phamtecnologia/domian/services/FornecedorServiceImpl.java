@@ -1,5 +1,6 @@
 package br.com.phamtecnologia.domian.services;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.phamtecnologia.domian.entities.Fornecedor;
 import br.com.phamtecnologia.domian.interfaces.FornecedorService;
+import br.com.phamtecnologia.dtos.FornecedorPostDto;
 import br.com.phamtecnologia.repositories.FornecedorRepository;
 
 @Service
@@ -17,12 +19,21 @@ public class FornecedorServiceImpl implements FornecedorService{
 	FornecedorRepository fornecedorRepository;
 	
 	@Override
-	public void post(Fornecedor fornecedor) throws Exception {
+	public void create(FornecedorPostDto dto) throws Exception {
+		
+		Fornecedor fornecedor = new Fornecedor();
+		
+		fornecedor.setId(UUID.randomUUID());
+		fornecedor.setNome(dto.getNome());
+		fornecedor.setPreco(new BigDecimal(dto.getPreco()));
+		fornecedor.setQuantidade(dto.getQuantidade());
+		fornecedor.setDescricao(dto.getDescricao());
+		
 		fornecedorRepository.save(fornecedor);
 	}
 
 	@Override
-	public void put(Fornecedor fornecedor) throws Exception {
+	public void update(Fornecedor fornecedor) throws Exception {
 		fornecedorRepository.save(fornecedor);
 	}
 

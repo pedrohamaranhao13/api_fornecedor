@@ -25,7 +25,7 @@ public class Fornecedor {
 	private String descricao;
 	
 	@Column(name = "quantidade", nullable = false)
-	private String quantidade;
+	private Integer quantidade;
 	
 	@Column(name = "preco", precision = 10, scale = 2, nullable = false)
 	private BigDecimal preco;
