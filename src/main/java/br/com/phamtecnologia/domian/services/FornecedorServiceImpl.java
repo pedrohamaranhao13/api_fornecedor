@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.phamtecnologia.domian.entities.Fornecedor;
 import br.com.phamtecnologia.domian.interfaces.FornecedorService;
 import br.com.phamtecnologia.dtos.FornecedorPostDto;
+import br.com.phamtecnologia.dtos.FornecedorPutDto;
 import br.com.phamtecnologia.repositories.FornecedorRepository;
 
 @Service
@@ -33,7 +34,16 @@ public class FornecedorServiceImpl implements FornecedorService{
 	}
 
 	@Override
-	public void update(Fornecedor fornecedor) throws Exception {
+	public void update(FornecedorPutDto dto) throws Exception {
+		
+		Fornecedor fornecedor = findById(dto.getId());
+		
+		fornecedor.setId(dto.getId());
+		fornecedor.setNome(dto.getNome());
+		fornecedor.setPreco(new BigDecimal(dto.getPreco()));
+		fornecedor.setQuantidade(dto.getQuantidade());
+		fornecedor.setDescricao(dto.getDescricao());
+		
 		fornecedorRepository.save(fornecedor);
 	}
 

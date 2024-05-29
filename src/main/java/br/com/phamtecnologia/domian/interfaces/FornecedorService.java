@@ -5,12 +5,13 @@ import java.util.UUID;
 
 import br.com.phamtecnologia.domian.entities.Fornecedor;
 import br.com.phamtecnologia.dtos.FornecedorPostDto;
+import br.com.phamtecnologia.dtos.FornecedorPutDto;
 
 
 public interface FornecedorService {
 
 	public void create(FornecedorPostDto dto) throws Exception;
-	public void update(Fornecedor fornecedor) throws Exception;
+	public void update(FornecedorPutDto fornecedor) throws Exception;
 	public void delete(UUID id) throws Exception;
 	
 	List<Fornecedor> findAll() throws Exception;
